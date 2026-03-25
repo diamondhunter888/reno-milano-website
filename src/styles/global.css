@@ -1,0 +1,69 @@
+/* ── Custom Properties ── */
+:root {
+  --clr-black:    #0d0d0d;
+  --clr-dark:     #2a2a2a;
+  --clr-mid:      #888888;
+  --clr-light:    #f5f5f5;
+  --clr-white:    #ffffff;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Inter', sans-serif;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--clr-dark);
+  background: var(--clr-white);
+  line-height: 1.6;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Utilities ── */
+.container { max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+.label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+}
+.btn-outline {
+  display: inline-block;
+  border: 1px solid currentColor;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.btn-outline:hover { background: var(--clr-white); color: var(--clr-black); }
+.btn-solid {
+  display: inline-block;
+  background: var(--clr-white);
+  color: var(--clr-black);
+  padding: 0.6rem 1.5rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--clr-white);
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.btn-solid:hover { background: transparent; color: var(--clr-white); }
+
+/* ── Section spacing ── */
+.section { padding: var(--spacing-lg) 0; }
+.section--dark { background: var(--clr-black); color: var(--clr-white); }
+.section--light { background: var(--clr-light); }
