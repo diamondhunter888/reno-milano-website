@@ -5,6 +5,7 @@
   --clr-mid:      #888888;
   --clr-light:    #f5f5f5;
   --clr-white:    #ffffff;
+  --clr-accent:   #888888; /* placeholder — update to brand accent if needed */
 
   --font-display: 'Cormorant Garamond', serif;
   --font-body:    'Inter', sans-serif;
@@ -14,6 +15,7 @@
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
   --spacing-xl: 8rem;
+  --spacing-container-pad: 1.5rem;
 }
 
 /* ── Reset ── */
@@ -22,6 +24,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-body);
   font-size: 1rem;
+  font-weight: 400;
   color: var(--clr-dark);
   background: var(--clr-white);
   line-height: 1.6;
@@ -30,7 +33,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
 /* ── Utilities ── */
-.container { max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+.container { max-width: 1200px; margin-inline: auto; padding-inline: var(--spacing-container-pad); }
 .label {
   font-size: 0.6875rem;
   font-weight: 600;
@@ -38,6 +41,8 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   color: var(--clr-mid);
 }
+/* .btn-outline: transparent background, border in currentColor.
+   Hover always fills dark — works on both light and dark section backgrounds. */
 .btn-outline {
   display: inline-block;
   border: 1px solid currentColor;
@@ -45,10 +50,10 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
   cursor: pointer;
 }
-.btn-outline:hover { background: var(--clr-white); color: var(--clr-black); }
+.btn-outline:hover { background: var(--clr-black); color: var(--clr-white); border-color: var(--clr-black); }
 .btn-solid {
   display: inline-block;
   background: var(--clr-white);
@@ -64,6 +69,6 @@ a { color: inherit; text-decoration: none; }
 .btn-solid:hover { background: transparent; color: var(--clr-white); }
 
 /* ── Section spacing ── */
-.section { padding: var(--spacing-lg) 0; }
+.section { padding-block: var(--spacing-lg); }
 .section--dark { background: var(--clr-black); color: var(--clr-white); }
 .section--light { background: var(--clr-light); }
