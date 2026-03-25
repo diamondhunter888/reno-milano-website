@@ -1,0 +1,61 @@
+---
+const diensten = [
+  { icon: '🏠', titel: 'Woningrenovatie', omschrijving: 'Vloeren, muren en plafonds — volledig vernieuwd met oog voor detail.' },
+  { icon: '🏚️', titel: 'Dakwerken', omschrijving: 'Isolatie, herstelling en vervanging van daken voor elk type woning.' },
+  { icon: '🛁', titel: 'Badkamer', omschrijving: 'Totaalrenovatie van uw badkamer: van ontwerp tot volledige afwerking.' },
+  { icon: '🍳', titel: 'Keuken', omschrijving: 'Keukens op maat, perfect geplaatst en afgewerkt tot in de puntjes.' },
+];
+---
+<section class="section section--light diensten">
+  <div class="container">
+    <p class="label" style="text-align:center;margin-bottom:0.75rem;">Wat wij doen</p>
+    <h2 class="diensten__title">Onze Diensten</h2>
+    <div class="diensten__grid">
+      {diensten.map(d => (
+        <div class="diensten__card">
+          <span class="diensten__icon" aria-hidden="true">{d.icon}</span>
+          <h3 class="diensten__naam">{d.titel}</h3>
+          <p class="diensten__omschrijving">{d.omschrijving}</p>
+        </div>
+      ))}
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <a href="/diensten" class="btn-outline" style="border-color:var(--clr-dark);color:var(--clr-dark);">Alle diensten bekijken</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.diensten__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: var(--clr-black);
+  margin-bottom: var(--spacing-md);
+}
+.diensten__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.diensten__card {
+  background: var(--clr-white);
+  border: 1px solid #e0e0e0;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: box-shadow 0.2s;
+}
+.diensten__card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+.diensten__icon { font-size: 2rem; display: block; margin-bottom: 1rem; }
+.diensten__naam {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-black);
+  margin-bottom: 0.75rem;
+}
+.diensten__omschrijving { font-size: 0.875rem; color: var(--clr-mid); line-height: 1.7; }
+</style>

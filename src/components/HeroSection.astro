@@ -1,0 +1,45 @@
+---
+---
+<section class="hero">
+  <div class="hero__inner">
+    <p class="label hero__label">Renovatie · Antwerpen · België</p>
+    <h1 class="hero__title">
+      <span class="hero__thin">RENO</span>
+      <span class="hero__bold">MILANO</span>
+    </h1>
+    <div class="hero__divider"></div>
+    <p class="hero__sub">Vakmanschap dat spreekt voor zich</p>
+    <a href="/realisaties" class="btn-outline hero__cta">Bekijk onze realisaties</a>
+  </div>
+</section>
+
+<style>
+.hero {
+  min-height: 100vh;
+  background: var(--clr-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-lg) var(--spacing-sm);
+}
+.hero__inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.hero__label { color: var(--clr-mid); margin-bottom: 0.5rem; }
+.hero__title {
+  font-family: var(--font-display);
+  display: flex;
+  gap: 0.5em;
+  letter-spacing: 0.2em;
+  line-height: 1;
+}
+.hero__thin { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 300; color: var(--clr-white); }
+.hero__bold { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; color: var(--clr-white); }
+.hero__divider { width: 48px; height: 1px; background: var(--clr-mid); margin: 0.5rem 0; }
+.hero__sub {
+  font-size: 0.8125rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+}
+.hero__cta { margin-top: 1.5rem; color: var(--clr-mid); }
+</style>
