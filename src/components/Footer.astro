@@ -1,0 +1,49 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="footer__logo">RENO MILANO</span>
+    <p class="label footer__copy">© {year} Reno Milano · Antwerpen, België</p>
+    <ul class="footer__links" role="list">
+      <li><a href="/diensten" class="footer__link">Diensten</a></li>
+      <li><a href="/realisaties" class="footer__link">Realisaties</a></li>
+      <li><a href="/contact" class="footer__link">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--clr-black);
+  border-top: 1px solid var(--clr-dark);
+  padding-block: 2rem;
+}
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.footer__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--clr-white);
+}
+.footer__copy { color: var(--clr-mid); }
+.footer__links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.footer__link {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+  transition: color 0.2s;
+}
+.footer__link:hover { color: var(--clr-white); }
+</style>

@@ -1,0 +1,113 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/diensten', label: 'Diensten' },
+  { href: '/realisaties', label: 'Realisaties' },
+  { href: '/over-ons', label: 'Over ons' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="nav">
+  <div class="container nav__inner">
+    <a href="/" class="nav__logo">RENO MILANO</a>
+
+    <button class="nav__toggle" aria-label="Menu openen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav__links" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a
+            href={link.href}
+            class={`nav__link ${currentPath === link.href ? 'nav__link--active' : ''}`}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="/contact" class="btn-outline nav__cta">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--clr-black);
+  border-bottom: 1px solid var(--clr-dark);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav__logo {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--clr-white);
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+.nav__link {
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+  transition: color 0.2s;
+}
+.nav__link:hover, .nav__link--active { color: var(--clr-white); }
+.nav__cta { color: var(--clr-mid); }
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav__toggle span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: var(--clr-white);
+  transition: transform 0.2s;
+}
+
+@media (max-width: 768px) {
+  .nav__toggle { display: flex; }
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: 64px; left: 0; right: 0;
+    background: var(--clr-black);
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1.5rem;
+    border-top: 1px solid var(--clr-dark);
+  }
+  .nav__links.is-open { display: flex; }
+}
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav__toggle');
+  const links = document.querySelector('.nav__links');
+  toggle?.addEventListener('click', () => {
+    const isOpen = links?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>
