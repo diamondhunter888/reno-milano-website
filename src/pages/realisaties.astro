@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projecten = [
+  { naam: 'Totaalrenovatie — Borgerhout', categorie: 'Woningrenovatie', omschrijving: 'Volledige renovatie van een rijwoning inclusief vloeren, schilderwerk en badkamer.' },
+  { naam: 'Dakrenovatie — Merksem', categorie: 'Dakwerken', omschrijving: 'Volledige vervanging van het dak met nieuwe isolatie en ventilatie.' },
+  { naam: 'Luxe badkamer — Berchem', categorie: 'Badkamer', omschrijving: 'Moderne inloopdouche, vrijstaand bad en maatwerk meubels.' },
+  { naam: 'Open keuken — Wilrijk', categorie: 'Keuken', omschrijving: 'Keuken op maat met eiland, inductie en natuurstenen werkblad.' },
+  { naam: 'Appartementrenovatie — Antwerpen centrum', categorie: 'Woningrenovatie', omschrijving: 'Renovatie van een appartement inclusief nieuwe vloeren en plafonds.' },
+  { naam: 'Badkamer & keuken — Deurne', categorie: 'Badkamer & Keuken', omschrijving: 'Gecombineerde renovatie van badkamer en keuken in één project.' },
+];
+---
+<BaseLayout title="Realisaties" description="Bekijk de realisaties van Reno Milano: renovatieprojecten in Antwerpen en omgeving.">
+  <section class="section section--dark page-hero">
+    <div class="container" style="text-align:center;">
+      <p class="label" style="margin-bottom:0.75rem;">Ons werk</p>
+      <h1 class="page-hero__title">REALISATIES</h1>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container">
+      <div class="portfolio__grid">
+        {projecten.map(p => (
+          <article class="portfolio__kaart">
+            <img src="/images/placeholder.svg" alt={p.naam} class="portfolio__foto" />
+            <div class="portfolio__info">
+              <p class="label" style="margin-bottom:0.25rem;">{p.categorie}</p>
+              <h3 class="portfolio__naam">{p.naam}</h3>
+              <p class="portfolio__omschrijving">{p.omschrijving}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" style="text-align:center;">
+    <div class="container">
+      <p style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:var(--clr-white);letter-spacing:0.08em;margin-bottom:2rem;">Wil u uw woning ook laten renoveren?</p>
+      <a href="/contact" class="btn-outline real-cta">Offerte aanvragen</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--clr-white);
+}
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.portfolio__kaart { background: var(--clr-white); border: 1px solid #e0e0e0; overflow: hidden; }
+.portfolio__foto { width: 100%; height: 220px; object-fit: cover; }
+.portfolio__info { padding: 1.25rem; }
+.portfolio__naam {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-black);
+  margin: 0.25rem 0 0.5rem;
+}
+.portfolio__omschrijving { font-size: 0.875rem; color: var(--clr-mid); line-height: 1.6; }
+.real-cta { color: var(--clr-mid); }
+@media (max-width: 1024px) { .portfolio__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .portfolio__grid { grid-template-columns: 1fr; } }
+</style>
