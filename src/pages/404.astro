@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Pagina niet gevonden">
+  <section class="section section--dark not-found">
+    <div class="container" style="text-align:center;">
+      <p class="label" style="margin-bottom:1rem;">Fout 404</p>
+      <h1 class="not-found__title">OEPS</h1>
+      <p class="not-found__sub">Deze pagina bestaat niet (meer).</p>
+      <a href="/" class="btn-outline not-found__cta">Terug naar home</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.not-found {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.not-found__title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  color: var(--clr-white);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+.not-found__sub { color: var(--clr-mid); margin-bottom: 2.5rem; font-size: 1rem; }
+.not-found__cta { color: var(--clr-mid); }
+</style>
