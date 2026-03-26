@@ -1,11 +1,13 @@
 /* ── Custom Properties ── */
+/* Palette: https://coolors.co/palette/1c1c1c-daddd8-ecebe4-eef0f2-fafaff */
 :root {
-  --clr-black:    #0d0d0d;
-  --clr-dark:     #2a2a2a;
-  --clr-mid:      #888888;
-  --clr-light:    #f5f5f5;
-  --clr-white:    #ffffff;
-  --clr-accent:   #888888; /* placeholder — update to brand accent if needed */
+  --clr-black:    #1c1c1c;  /* Eerie Black  — navbar, dark sections */
+  --clr-dark:     #2e2e2e;  /* border/divider op donkere achtergrond */
+  --clr-mid:      #daddd8;  /* Timberwolf   — subtitels, accenten, lijnen */
+  --clr-warm:     #ecebe4;  /* Isabelline   — warme lichte secties */
+  --clr-light:    #eef0f2;  /* Alice Blue   — koele lichte secties */
+  --clr-white:    #fafaff;  /* Ghost White  — body, kaarten */
+  --clr-accent:   #daddd8;  /* zelfde als mid; vervang indien gewenst */
 
   --font-display: 'Cormorant Garamond', serif;
   --font-body:    'Inter', sans-serif;
@@ -26,7 +28,7 @@ body {
   font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 400;
-  color: var(--clr-dark);
+  color: var(--clr-black);
   background: var(--clr-white);
   line-height: 1.6;
 }
@@ -72,4 +74,5 @@ a { color: inherit; text-decoration: none; }
 /* ── Section spacing ── */
 .section { padding-block: var(--spacing-lg); }
 .section--dark { background: var(--clr-black); color: var(--clr-white); }
-.section--light { background: var(--clr-light); }
+.section--light { background: var(--clr-warm); }
+.section--cool  { background: var(--clr-light); }
