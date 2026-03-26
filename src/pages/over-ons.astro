@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const waarden = [
+  { titel: 'Kwaliteit', tekst: 'Wij werken uitsluitend met kwalitatieve materialen en bewezen technieken. Elk project wordt met dezelfde zorg afgewerkt, groot of klein.' },
+  { titel: 'Betrouwbaarheid', tekst: 'Duidelijke communicatie, eerlijke prijzen en afspraken nakomen. Dat is de basis van elke samenwerking bij Reno Milano.' },
+  { titel: 'Vakmanschap', tekst: 'Onze ervaren vaklieden brengen jarenlange kennis mee. Van dakwerken tot badkamerafwerking: het detail maakt het verschil.' },
+];
+---
+<BaseLayout title="Over ons" description="Leer meer over Reno Milano, uw renovatiepartner in Antwerpen.">
+  <section class="section section--dark page-hero">
+    <div class="container" style="text-align:center;">
+      <p class="label" style="margin-bottom:0.75rem;">Wie zijn wij</p>
+      <h1 class="page-hero__title">OVER ONS</h1>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container verhaal">
+      <div>
+        <p class="label" style="margin-bottom:0.75rem;">Ons verhaal</p>
+        <h2 class="verhaal__titel">Renovatie met passie en precisie</h2>
+        <p class="verhaal__tekst">Reno Milano is een renovatiebedrijf gevestigd in het hart van Antwerpen. Met meer dan tien jaar ervaring in woningrenovatie, dakwerken, badkamers en keukens hebben wij honderden Antwerpse gezinnen een mooier, comfortabeler thuis gegeven.</p>
+        <p class="verhaal__tekst">Wij geloven dat een geslaagde renovatie begint bij goed luisteren. Uw wensen, uw stijl, uw budget — dat is ons vertrekpunt. Van het eerste gesprek tot de laatste afwerking staan wij voor u klaar met eerlijk advies en vakkundige uitvoering.</p>
+      </div>
+      <div>
+        <img src="/images/placeholder.svg" alt="Reno Milano team" class="verhaal__foto" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <p class="label" style="text-align:center;margin-bottom:0.75rem;">Waar wij voor staan</p>
+      <h2 class="waarden__titel">Onze Waarden</h2>
+      <div class="waarden__grid">
+        {waarden.map(w => (
+          <div class="waarde">
+            <div class="waarde__divider"></div>
+            <h3 class="waarde__naam">{w.titel}</h3>
+            <p class="waarde__tekst">{w.tekst}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" style="text-align:center;">
+    <div class="container">
+      <p class="label" style="margin-bottom:0.75rem;">Erkend aannemer</p>
+      <p class="erkend__tekst">Reno Milano is een geregistreerde aannemer en voldoet aan alle wettelijke vereisten voor renovatiewerken in België. Wij werken conform de Belgische bouwregelgeving en bieden volledige garantie op al onze werken.</p>
+      <a href="/contact" class="btn-outline erkend__cta">Neem contact op</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--clr-white);
+}
+.verhaal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.verhaal__titel {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--clr-black);
+  margin-bottom: 1.5rem;
+}
+.verhaal__tekst { color: #555; line-height: 1.9; margin-bottom: 1rem; }
+.verhaal__foto { width: 100%; height: 360px; object-fit: cover; }
+.waarden__titel {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--clr-white);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+.waarden__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.5rem;
+}
+.waarde__divider { width: 32px; height: 1px; background: var(--clr-mid); margin-bottom: 1rem; }
+.waarde__naam {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--clr-white);
+  margin-bottom: 0.75rem;
+}
+.waarde__tekst { font-size: 0.875rem; color: var(--clr-mid); line-height: 1.8; }
+.erkend__tekst { color: #555; max-width: 600px; margin: 0 auto 2rem; line-height: 1.8; }
+.erkend__cta { border-color: var(--clr-dark); color: var(--clr-dark); }
+@media (max-width: 768px) { .verhaal { grid-template-columns: 1fr; gap: 2rem; } }
+</style>
