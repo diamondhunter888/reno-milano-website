@@ -29,8 +29,9 @@ const {
     <title>{title} · Reno Milano</title>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Ga naar inhoud</a>
     <Nav />
-    <main style="padding-top: var(--nav-height);">
+    <main id="main-content" style="padding-top: var(--nav-height);">
       <slot />
     </main>
     <Footer />

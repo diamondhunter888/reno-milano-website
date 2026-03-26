@@ -30,6 +30,10 @@
   <button type="submit" class="btn-solid contact-form__btn">Verstuur bericht</button>
 </form>
 
+<div id="form-success" class="form-success" aria-live="polite" style="display:none;">
+  <p>&#x2713; Bericht verzonden. Wij contacteren u zo snel mogelijk.</p>
+</div>
+
 <style>
 .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
 .contact-form__group { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -55,4 +59,42 @@
   padding: 0.75rem 2rem;
 }
 .contact-form__btn:hover { background: transparent; color: var(--clr-black); border-color: var(--clr-black); }
+.form-success {
+  background: var(--clr-warm, #ecebe4);
+  border: 1px solid var(--clr-mid);
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--clr-black);
+  margin-top: 1rem;
+}
 </style>
+
+<script>
+  const form = document.querySelector('.contact-form') as HTMLFormElement | null;
+  const success = document.getElementById('form-success');
+  const btn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!btn) return;
+    const original = btn.textContent;
+    btn.textContent = 'Verzenden...';
+    btn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data as any).toString(),
+      });
+      if (success) success.style.display = 'block';
+      form.reset();
+    } catch {
+      btn.textContent = 'Fout — probeer opnieuw';
+    } finally {
+      btn.disabled = false;
+      if (btn.textContent === 'Verzenden...') btn.textContent = original ?? 'Verstuur bericht';
+    }
+  });
+</script>
