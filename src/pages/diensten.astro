@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const diensten = [
+  {
+    titel: 'Woningrenovatie',
+    omschrijving: 'Van vloeren tot plafonds: wij renoveren uw woning van A tot Z. Met oog voor kwaliteit en detail zorgen wij voor een perfect resultaat dat jaren meegaat.',
+    details: ['Vloerwerken (parket, tegels, vinyl)', 'Schilderwerk en behang', 'Plafondafwerking', 'Elektriciteit en sanitair (coördinatie)'],
+  },
+  {
+    titel: 'Dakwerken',
+    omschrijving: 'Een solide dak is de basis van elk huis. Wij verzorgen isolatie, herstelling en volledige vervanging van daken voor elk type woning in Antwerpen en omgeving.',
+    details: ['Dakinspectie en diagnose', 'Isolatie en ventilatie', 'Herstelling van lekken', 'Volledige dakrenovatie'],
+  },
+  {
+    titel: 'Badkamerrenovatie',
+    omschrijving: 'Uw badkamer verdient een frisse start. Van ontwerp tot volledige realisatie: wij maken van uw badkamer een luxueuze en functionele ruimte.',
+    details: ['Volledige sloop en opbouw', 'Tegels en vloerwerken', 'Sanitair en kranen', 'Douche, bad en meubels'],
+  },
+  {
+    titel: 'Keukenrenovatie',
+    omschrijving: 'Een nieuwe keuken op maat, perfect aangepast aan uw stijl en ruimte. Wij begeleiden u van het eerste ontwerp tot de laatste schroef.',
+    details: ['Keukenontwerp op maat', 'Plaatsing en afwerking', 'Aanrechtbladen en achterwanden', 'Verlichting en elektrische aansluitingen'],
+  },
+];
+---
+<BaseLayout title="Diensten" description="Ontdek alle renovatiediensten van Reno Milano: woningrenovatie, dakwerken, badkamer en keuken in Antwerpen.">
+  <section class="section section--dark page-hero">
+    <div class="container" style="text-align:center;">
+      <p class="label" style="margin-bottom:0.75rem;">Wat wij doen</p>
+      <h1 class="page-hero__title">ONZE DIENSTEN</h1>
+    </div>
+  </section>
+
+  {diensten.map((d, i) => (
+    <section class={`section ${i % 2 === 0 ? 'section--light' : ''}`}>
+      <div class="container dienst">
+        <div class="dienst__tekst">
+          <p class="label" style="margin-bottom:0.5rem;">{`0${i + 1}`}</p>
+          <h2 class="dienst__titel">{d.titel}</h2>
+          <p class="dienst__omschrijving">{d.omschrijving}</p>
+          <ul class="dienst__lijst" role="list">
+            {d.details.map(item => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="dienst__foto">
+          <img src="/images/placeholder.svg" alt={d.titel} />
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section section--dark" style="text-align:center;">
+    <div class="container">
+      <p class="label" style="margin-bottom:1rem;">Interesse?</p>
+      <h2 class="diensten-cta__title">Vraag een vrijblijvende offerte aan</h2>
+      <a href="/contact" class="btn-outline diensten-cta__btn">Contact opnemen</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--clr-white);
+}
+.dienst {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.dienst__titel {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--clr-black);
+  margin-bottom: 1rem;
+}
+.dienst__omschrijving { color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
+.dienst__lijst { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.dienst__lijst li {
+  font-size: 0.875rem;
+  color: var(--clr-mid);
+  padding-left: 1rem;
+  border-left: 1px solid var(--clr-mid);
+}
+.dienst__foto img { width: 100%; height: 320px; object-fit: cover; }
+.diensten-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--clr-white);
+  margin-bottom: 2rem;
+}
+.diensten-cta__btn { color: var(--clr-mid); }
+@media (max-width: 768px) {
+  .dienst { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
