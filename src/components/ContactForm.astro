@@ -1,0 +1,58 @@
+---
+---
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="contact-form"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p style="display:none;">
+    <label>Niet invullen: <input name="bot-field" /></label>
+  </p>
+
+  <div class="contact-form__group">
+    <label class="label contact-form__label" for="naam">Naam</label>
+    <input type="text" id="naam" name="naam" required class="contact-form__input" placeholder="Uw volledige naam" />
+  </div>
+
+  <div class="contact-form__group">
+    <label class="label contact-form__label" for="email">E-mailadres</label>
+    <input type="email" id="email" name="email" required class="contact-form__input" placeholder="uw@email.be" />
+  </div>
+
+  <div class="contact-form__group">
+    <label class="label contact-form__label" for="bericht">Bericht</label>
+    <textarea id="bericht" name="bericht" required rows="5" class="contact-form__input contact-form__textarea" placeholder="Beschrijf uw renovatieproject..."></textarea>
+  </div>
+
+  <button type="submit" class="btn-solid contact-form__btn">Verstuur bericht</button>
+</form>
+
+<style>
+.contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-form__group { display: flex; flex-direction: column; gap: 0.5rem; }
+.contact-form__label { color: var(--clr-mid); }
+.contact-form__input {
+  background: var(--clr-light);
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--clr-black);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.contact-form__input:focus { border-color: var(--clr-mid); }
+.contact-form__textarea { resize: vertical; min-height: 120px; }
+.contact-form__btn {
+  background: var(--clr-black);
+  color: var(--clr-white);
+  border-color: var(--clr-black);
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
+}
+.contact-form__btn:hover { background: transparent; color: var(--clr-black); border-color: var(--clr-black); }
+</style>

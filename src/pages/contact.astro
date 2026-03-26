@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import MapsEmbed from '../components/MapsEmbed.astro';
+---
+<BaseLayout title="Contact" description="Neem contact op met Reno Milano voor een vrijblijvende offerte voor uw renovatieproject in Antwerpen.">
+  <section class="section section--dark page-hero">
+    <div class="container" style="text-align:center;">
+      <p class="label" style="margin-bottom:0.75rem;">Vrijblijvend contact</p>
+      <h1 class="page-hero__title">CONTACT</h1>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container contact-layout">
+      <div>
+        <p class="label" style="margin-bottom:1.5rem;">Stuur een bericht</p>
+        <ContactForm />
+      </div>
+      <div class="contact-info">
+        <p class="label" style="margin-bottom:1.5rem;">Contactgegevens</p>
+        <ul class="gegevens-lijst" role="list">
+          <li>
+            <span class="label">Adres</span>
+            <p>Antwerpen, België</p>
+          </li>
+          <li>
+            <span class="label">Telefoon</span>
+            <p><a href="tel:+32000000000">+32 (0)0 000 00 00</a></p>
+          </li>
+          <li>
+            <span class="label">E-mail</span>
+            <p><a href="mailto:info@renomilano.be">info@renomilano.be</a></p>
+          </li>
+          <li>
+            <span class="label">Openingsuren</span>
+            <p>Ma–Vr: 8:00–18:00</p>
+          </li>
+        </ul>
+        <MapsEmbed />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--clr-white);
+}
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.gegevens-lijst {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.gegevens-lijst li { display: flex; flex-direction: column; gap: 0.25rem; }
+.gegevens-lijst p { color: #555; font-size: 0.9375rem; }
+.gegevens-lijst a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+}
+</style>
