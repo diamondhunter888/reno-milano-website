@@ -1,0 +1,117 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  sub?: string;
+  bg?: string;
+}
+const { eyebrow, title, sub, bg } = Astro.props;
+const bgText = bg ?? title.split(' ')[0];
+---
+<section class="page-hero">
+  <span class="page-hero__bg" aria-hidden="true">{bgText}</span>
+  <div class="page-hero__inner">
+    <div class="page-hero__top">
+      <div class="page-hero__line"></div>
+      <p class="label page-hero__eyebrow">{eyebrow}</p>
+    </div>
+    <h1 class="page-hero__title" set:html={title}></h1>
+    {sub && <p class="page-hero__sub">{sub}</p>}
+  </div>
+</section>
+
+<style>
+.page-hero {
+  background: var(--clr-black);
+  padding-top: calc(var(--nav-height) + var(--spacing-lg));
+  padding-bottom: var(--spacing-lg);
+  padding-inline: var(--spacing-container-pad);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-hero__bg {
+  position: absolute;
+  right: -1rem;
+  bottom: -1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 22vw, 18rem);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(218,221,216,0.05);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.page-hero__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  position: relative;
+}
+
+.page-hero__top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  animation: phFadeUp 0.55s ease both 0.2s;
+}
+
+.page-hero__line {
+  width: 48px;
+  height: 1px;
+  background: var(--clr-mid);
+  flex-shrink: 0;
+  transform-origin: left;
+  animation: phLineGrow 0.55s ease both 0.15s;
+}
+
+.page-hero__eyebrow { color: var(--clr-mid); }
+
+.page-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--clr-white);
+  animation: phReveal 0.75s cubic-bezier(0.16,1,0.3,1) both 0.32s;
+}
+
+.page-hero__sub {
+  font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+  font-weight: 300;
+  color: rgba(218,221,216,0.65);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-top: 1.5rem;
+  animation: phFadeUp 0.55s ease both 0.52s;
+}
+
+@keyframes phFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes phLineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes phReveal {
+  from { clip-path: inset(0 100% 0 0); opacity: 0.5; }
+  to   { clip-path: inset(0 0% 0 0);   opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero__top,
+  .page-hero__line,
+  .page-hero__title,
+  .page-hero__sub {
+    animation: none;
+    opacity: 1;
+    clip-path: none;
+    transform: none;
+  }
+}
+</style>

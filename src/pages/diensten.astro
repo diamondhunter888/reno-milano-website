@@ -1,105 +1,297 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const diensten = [
   {
-    titel: 'Woningrenovatie',
+    id: 'woningrenovatie',
+    nummer: '01',
+    titel: 'Woning&shy;renovatie',
     omschrijving: 'Van vloeren tot plafonds: wij renoveren uw woning van A tot Z. Met oog voor kwaliteit en detail zorgen wij voor een perfect resultaat dat jaren meegaat.',
     details: ['Vloerwerken (parket, tegels, vinyl)', 'Schilderwerk en behang', 'Plafondafwerking', 'Elektriciteit en sanitair (coördinatie)'],
+    foto: '/images/ph-woning.svg',
+    alt: 'Woningrenovatie door Reno Milano',
   },
   {
+    id: 'dakwerken',
+    nummer: '02',
     titel: 'Dakwerken',
     omschrijving: 'Een solide dak is de basis van elk huis. Wij verzorgen isolatie, herstelling en volledige vervanging van daken voor elk type woning in Antwerpen en omgeving.',
     details: ['Dakinspectie en diagnose', 'Isolatie en ventilatie', 'Herstelling van lekken', 'Volledige dakrenovatie'],
+    foto: '/images/ph-dak.svg',
+    alt: 'Dakwerken door Reno Milano',
   },
   {
-    titel: 'Badkamerrenovatie',
+    id: 'badkamer',
+    nummer: '03',
+    titel: 'Badkamer',
     omschrijving: 'Uw badkamer verdient een frisse start. Van ontwerp tot volledige realisatie: wij maken van uw badkamer een luxueuze en functionele ruimte.',
     details: ['Volledige sloop en opbouw', 'Tegels en vloerwerken', 'Sanitair en kranen', 'Douche, bad en meubels'],
+    foto: '/images/ph-bad.svg',
+    alt: 'Badkamerrenovatie door Reno Milano',
   },
   {
-    titel: 'Keukenrenovatie',
+    id: 'keuken',
+    nummer: '04',
+    titel: 'Keuken',
     omschrijving: 'Een nieuwe keuken op maat, perfect aangepast aan uw stijl en ruimte. Wij begeleiden u van het eerste ontwerp tot de laatste schroef.',
     details: ['Keukenontwerp op maat', 'Plaatsing en afwerking', 'Aanrechtbladen en achterwanden', 'Verlichting en elektrische aansluitingen'],
+    foto: '/images/ph-keuken.svg',
+    alt: 'Keukenrenovatie door Reno Milano',
   },
 ];
 ---
 <BaseLayout title="Diensten" description="Ontdek alle renovatiediensten van Reno Milano: woningrenovatie, dakwerken, badkamer en keuken in Antwerpen.">
-  <section class="section section--dark page-hero">
-    <div class="container" style="text-align:center;">
-      <p class="label" style="margin-bottom:0.75rem;">Wat wij doen</p>
-      <h1 class="page-hero__title">ONZE DIENSTEN</h1>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Wat wij doen"
+    title="Onze<br><em style='font-weight:300;font-style:italic;'>Diensten</em>"
+    sub="Vier kerncompetenties, één standaard: het allerbeste vakmanschap."
+    bg="Diensten"
+  />
 
   {diensten.map((d, i) => (
-    <section class={`section ${i % 2 === 0 ? 'section--light' : ''}`}>
-      <div class="container dienst">
-        <div class="dienst__tekst">
-          <p class="label" style="margin-bottom:0.5rem;">{`0${i + 1}`}</p>
-          <h2 class="dienst__titel">{d.titel}</h2>
-          <p class="dienst__omschrijving">{d.omschrijving}</p>
-          <ul class="dienst__lijst" role="list">
+    <section class={`dienst-sectie${i % 2 !== 0 ? ' dienst-sectie--flip' : ''}`} id={d.id}>
+      <div class="dienst-sectie__inner">
+
+        <div class="dienst-sectie__media" data-anim="fade-in" style={`--anim-delay: ${i % 2 !== 0 ? '0.15s' : '0s'}`}>
+          <img src={d.foto} alt={d.alt} loading="lazy" />
+          <span class="dienst-sectie__nr-bg" aria-hidden="true">{d.nummer}</span>
+        </div>
+
+        <div class="dienst-sectie__content" data-anim="fade-up" style={`--anim-delay: ${i % 2 !== 0 ? '0s' : '0.15s'}`}>
+          <div class="dienst-sectie__meta">
+            <span class="label dienst-sectie__nr-label">{d.nummer}</span>
+            <div class="dienst-sectie__meta-line"></div>
+          </div>
+          <h2 class="dienst-sectie__titel" set:html={d.titel}></h2>
+          <p class="dienst-sectie__omschrijving">{d.omschrijving}</p>
+          <ul class="dienst-sectie__lijst" role="list">
             {d.details.map(item => <li>{item}</li>)}
           </ul>
+          <a href="/contact" class="btn-outline dienst-sectie__cta">Offerte aanvragen</a>
         </div>
-        <div class="dienst__foto">
-          <img src="/images/placeholder.svg" alt={d.titel} />
-        </div>
+
       </div>
     </section>
   ))}
 
-  <section class="section section--dark" style="text-align:center;">
-    <div class="container">
-      <p class="label" style="margin-bottom:1rem;">Interesse?</p>
-      <h2 class="diensten-cta__title">Vraag een vrijblijvende offerte aan</h2>
-      <a href="/contact" class="btn-outline diensten-cta__btn">Contact opnemen</a>
+  <!-- Bottom CTA -->
+  <section class="diensten-cta">
+    <div class="diensten-cta__inner">
+      <div class="diensten-cta__text" data-anim="fade-up">
+        <p class="label" style="color: rgba(28,28,28,0.5); margin-bottom: 1.25rem;">Interesse?</p>
+        <h2 class="diensten-cta__title">
+          Vraag een<br><em>vrijblijvende offerte</em><br>aan.
+        </h2>
+      </div>
+      <div class="diensten-cta__action" data-anim="fade-up" style="--anim-delay: 0.18s">
+        <div class="diensten-cta__line"></div>
+        <a href="/contact" class="btn-outline diensten-cta__btn">Contact opnemen</a>
+        <p class="diensten-cta__note">Binnen 24u antwoord.</p>
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-.page-hero__title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 300;
-  letter-spacing: 0.15em;
+/* ── Service sections ── */
+.dienst-sectie {
+  background: var(--clr-warm);
+  padding-block: var(--spacing-xl);
+  padding-inline: var(--spacing-container-pad);
+}
+
+.dienst-sectie:nth-child(even) {
+  background: var(--clr-black);
   color: var(--clr-white);
 }
-.dienst {
+
+.dienst-sectie__inner {
+  max-width: 1200px;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: var(--spacing-lg);
   align-items: center;
 }
-.dienst__titel {
+
+.dienst-sectie--flip .dienst-sectie__inner {
+  direction: rtl;
+}
+.dienst-sectie--flip .dienst-sectie__content {
+  direction: ltr;
+}
+
+.dienst-sectie__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.dienst-sectie__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.dienst-sectie__media:hover img { transform: scale(1.03); }
+
+.dienst-sectie__nr-bg {
+  position: absolute;
+  bottom: -1rem;
+  right: -0.5rem;
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
+  font-size: 8rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(218,221,216,0.08);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.dienst-sectie:nth-child(even) .dienst-sectie__nr-bg {
+  -webkit-text-stroke-color: rgba(218,221,216,0.06);
+}
+
+.dienst-sectie__meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.dienst-sectie__nr-label { color: rgba(28,28,28,0.45); }
+
+.dienst-sectie:nth-child(even) .dienst-sectie__nr-label { color: rgba(218,221,216,0.45); }
+
+.dienst-sectie__meta-line {
+  height: 1px;
+  width: 48px;
+  background: rgba(28,28,28,0.25);
+}
+
+.dienst-sectie:nth-child(even) .dienst-sectie__meta-line { background: rgba(218,221,216,0.25); }
+
+.dienst-sectie__titel {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: var(--clr-black);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
-.dienst__omschrijving { color: #555; line-height: 1.8; margin-bottom: 1.5rem; }
-.dienst__lijst { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.dienst__lijst li {
-  font-size: 0.875rem;
-  color: var(--clr-mid);
-  padding-left: 1rem;
-  border-left: 1px solid var(--clr-mid);
+
+.dienst-sectie:nth-child(even) .dienst-sectie__titel { color: var(--clr-white); }
+
+.dienst-sectie__omschrijving {
+  font-size: 0.9375rem;
+  color: rgba(28,28,28,0.65);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
 }
-.dienst__foto img { width: 100%; height: 320px; object-fit: cover; }
-.diensten-cta__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  color: var(--clr-white);
+
+.dienst-sectie:nth-child(even) .dienst-sectie__omschrijving { color: rgba(218,221,216,0.65); }
+
+.dienst-sectie__lijst {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
   margin-bottom: 2rem;
 }
-.diensten-cta__btn { color: var(--clr-mid); }
+
+.dienst-sectie__lijst li {
+  font-size: 0.8125rem;
+  color: rgba(28,28,28,0.6);
+  padding-left: 1.25rem;
+  border-left: 1px solid rgba(28,28,28,0.2);
+  line-height: 1.5;
+}
+
+.dienst-sectie:nth-child(even) .dienst-sectie__lijst li {
+  color: rgba(218,221,216,0.55);
+  border-left-color: rgba(218,221,216,0.2);
+}
+
+.dienst-sectie__cta {
+  color: var(--clr-black);
+  border-color: var(--clr-black);
+}
+
+.dienst-sectie:nth-child(even) .dienst-sectie__cta {
+  color: var(--clr-mid);
+  border-color: rgba(218,221,216,0.4);
+}
+
+/* ── Bottom CTA ── */
+.diensten-cta {
+  background: var(--clr-warm);
+  padding-block: var(--spacing-xl);
+  padding-inline: var(--spacing-container-pad);
+}
+
+.diensten-cta__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
+.diensten-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--clr-black);
+}
+
+.diensten-cta__title em {
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(28,28,28,0.5);
+}
+
+.diensten-cta__action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.diensten-cta__line {
+  width: 48px;
+  height: 1px;
+  background: rgba(28,28,28,0.3);
+}
+
+.diensten-cta__btn {
+  color: var(--clr-black);
+  border-color: var(--clr-black);
+  min-width: 220px;
+  justify-content: center;
+}
+
+.diensten-cta__note {
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(28,28,28,0.45);
+}
+
 @media (max-width: 768px) {
-  .dienst { grid-template-columns: 1fr; gap: 2rem; }
+  .dienst-sectie__inner {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .dienst-sectie--flip .dienst-sectie__inner { direction: ltr; }
+  .diensten-cta__inner { flex-direction: column; align-items: flex-start; }
+  .diensten-cta__btn { width: 100%; }
 }
 </style>

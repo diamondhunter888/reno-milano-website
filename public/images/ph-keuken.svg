@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560">
+  <defs>
+    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#1c1814"/>
+      <stop offset="100%" stop-color="#100e0a"/>
+    </linearGradient>
+    <pattern id="p" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0 L0 0 0 80" fill="none" stroke="rgba(218,221,216,0.045)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="560" fill="url(#g)"/>
+  <rect width="800" height="560" fill="url(#p)"/>
+  <line x1="0" y1="280" x2="800" y2="280" stroke="rgba(218,221,216,0.02)" stroke-width="1"/>
+  <text x="400" y="255" font-family="Georgia,serif" font-size="108" font-weight="bold"
+        text-anchor="middle" dominant-baseline="middle"
+        fill="none" stroke="rgba(218,221,216,0.065)" stroke-width="1.5">RM</text>
+  <line x1="360" y1="318" x2="440" y2="318" stroke="rgba(218,221,216,0.22)" stroke-width="0.5"/>
+  <text x="400" y="342" font-family="Arial,sans-serif" font-size="9" font-weight="600"
+        text-anchor="middle" fill="rgba(218,221,216,0.38)" letter-spacing="5">KEUKEN</text>
+</svg>

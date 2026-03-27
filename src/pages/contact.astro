@@ -1,73 +1,135 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import ContactForm from '../components/ContactForm.astro';
 import MapsEmbed from '../components/MapsEmbed.astro';
 ---
 <BaseLayout title="Contact" description="Neem contact op met Reno Milano voor een vrijblijvende offerte voor uw renovatieproject in Antwerpen.">
-  <section class="section section--dark page-hero">
-    <div class="container" style="text-align:center;">
-      <p class="label" style="margin-bottom:0.75rem;">Vrijblijvend contact</p>
-      <h1 class="page-hero__title">CONTACT</h1>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="Vrijblijvend contact"
+    title="Contact"
+    sub="Binnen 24 uur antwoord. Gratis en vrijblijvend advies."
+    bg="Contact"
+  />
 
-  <section class="section section--light">
-    <div class="container contact-layout">
-      <div>
-        <p class="label" style="margin-bottom:1.5rem;">Stuur een bericht</p>
+  <section class="contact-sectie">
+    <div class="contact-sectie__inner">
+
+      <!-- Formulier -->
+      <div class="contact-sectie__form" data-anim="fade-up">
+        <div class="contact-sectie__block-header">
+          <div class="contact-sectie__block-line"></div>
+          <p class="label">Stuur een bericht</p>
+        </div>
         <ContactForm />
       </div>
-      <div class="contact-info">
-        <p class="label" style="margin-bottom:1.5rem;">Contactgegevens</p>
-        <ul class="gegevens-lijst" role="list">
-          <li>
-            <span class="label">Adres</span>
-            <p>Antwerpen, België</p>
+
+      <!-- Info -->
+      <div class="contact-sectie__info" data-anim="fade-up" style="--anim-delay: 0.15s">
+        <div class="contact-sectie__block-header">
+          <div class="contact-sectie__block-line"></div>
+          <p class="label">Contactgegevens</p>
+        </div>
+
+        <ul class="gegevens" role="list">
+          <li class="gegevens__item">
+            <span class="gegevens__label label">Adres</span>
+            <p class="gegevens__waarde">Antwerpen, België</p>
           </li>
-          <li>
-            <span class="label">Telefoon</span>
-            <p><a href="tel:+32000000000">+32 (0)0 000 00 00</a></p>
+          <li class="gegevens__item">
+            <span class="gegevens__label label">Telefoon</span>
+            <p class="gegevens__waarde">
+              <a href="tel:+32000000000">+32 (0)0 000 00 00</a>
+            </p>
           </li>
-          <li>
-            <span class="label">E-mail</span>
-            <p><a href="mailto:info@renomilano.be">info@renomilano.be</a></p>
+          <li class="gegevens__item">
+            <span class="gegevens__label label">E-mail</span>
+            <p class="gegevens__waarde">
+              <a href="mailto:info@renomilano.be">info@renomilano.be</a>
+            </p>
           </li>
-          <li>
-            <span class="label">Openingsuren</span>
-            <p>Ma–Vr: 8:00–18:00</p>
+          <li class="gegevens__item">
+            <span class="gegevens__label label">Openingsuren</span>
+            <p class="gegevens__waarde">Ma–Vr: 8:00–18:00</p>
           </li>
         </ul>
+
         <MapsEmbed />
       </div>
+
     </div>
   </section>
 </BaseLayout>
 
 <style>
-.page-hero__title {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 300;
-  letter-spacing: 0.15em;
-  color: var(--clr-white);
+.contact-sectie {
+  background: var(--clr-warm);
+  padding-block: var(--spacing-xl);
+  padding-inline: var(--spacing-container-pad);
 }
-.contact-layout {
+
+.contact-sectie__inner {
+  max-width: 1200px;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: var(--spacing-lg);
   align-items: start;
 }
-.gegevens-lijst {
+
+.contact-sectie__block-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(28,28,28,0.12);
+}
+
+.contact-sectie__block-line {
+  width: 48px;
+  height: 1px;
+  background: rgba(28,28,28,0.3);
+  flex-shrink: 0;
+}
+
+/* Gegevens list */
+.gegevens {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0;
   margin-bottom: 2rem;
 }
-.gegevens-lijst li { display: flex; flex-direction: column; gap: 0.25rem; }
-.gegevens-lijst p { color: #555; font-size: 0.9375rem; }
-.gegevens-lijst a:hover { text-decoration: underline; }
+
+.gegevens__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid rgba(28,28,28,0.1);
+}
+
+.gegevens__item:first-child { padding-top: 0; }
+
+.gegevens__label { color: rgba(28,28,28,0.5); }
+
+.gegevens__waarde {
+  font-size: 0.9375rem;
+  color: var(--clr-black);
+  line-height: 1.5;
+}
+
+.gegevens__waarde a {
+  color: var(--clr-black);
+  transition: opacity 0.2s;
+}
+.gegevens__waarde a:hover { opacity: 0.6; text-decoration: underline; }
+
 @media (max-width: 768px) {
-  .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-sectie__inner {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
 }
 </style>
