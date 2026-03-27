@@ -3,7 +3,7 @@ const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="container footer__inner">
-    <span class="footer__logo">RENO MILANO</span>
+    <a href="/" class="footer__logo"><em>Reno</em>Milano</a>
     <p class="label footer__copy">© {year} Reno Milano · Antwerpen, België</p>
     <ul class="footer__links" role="list">
       <li><a href="/diensten" class="footer__link">Diensten</a></li>
@@ -28,9 +28,16 @@ const year = new Date().getFullYear();
 }
 .footer__logo {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: 0.3em;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
   color: var(--clr-white);
+  line-height: 1;
+}
+.footer__logo em {
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(218,221,216,0.7);
 }
 .footer__copy { color: var(--clr-mid); }
 .footer__links {

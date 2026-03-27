@@ -7,11 +7,18 @@ import { ViewTransitions } from 'astro:transitions';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
 }
 const {
   title,
   description = 'Reno Milano — Renovatiebedrijf in Antwerpen. Specialist in woningrenovatie, dakwerken, badkamer en keuken.',
+  ogImage = '/images/hero-interior.png',
 } = Astro.props;
+
+const siteUrl = 'https://renomilano.be';
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImageUrl = new URL(ogImage, siteUrl).href;
+const pageTitle = title === 'Home' ? 'Reno Milano — Renovatiebedrijf Antwerpen' : `${title} · Reno Milano`;
 ---
 
 <!doctype html>
@@ -20,14 +27,35 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="nl_BE" />
+    <meta property="og:site_name" content="Reno Milano" />
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preload hero image voor snellere LCP -->
+    <link rel="preload" as="image" href="/images/hero-interior.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <title>{title} · Reno Milano</title>
+    <title>{pageTitle}</title>
     <ViewTransitions />
   </head>
   <body>
