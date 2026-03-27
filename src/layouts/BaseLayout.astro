@@ -2,6 +2,7 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -23,17 +24,52 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700;800&family=Inter:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <title>{title} · Reno Milano</title>
+    <ViewTransitions />
   </head>
   <body>
     <a href="#main-content" class="skip-link">Ga naar inhoud</a>
-    <Nav />
+    <Nav transition:persist />
     <main id="main-content" style="padding-top: var(--nav-height);">
       <slot />
     </main>
     <Footer />
+    <script>
+      function animateCount(el: HTMLElement) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const original = el.textContent?.trim() ?? '';
+        const num = parseInt(original.replace(/\D/g, ''), 10);
+        const suffix = original.replace(/\d/g, '');
+        if (isNaN(num)) return;
+        const duration = 1400;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * num) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+
+      function initScrollReveal() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            el.classList.add('is-visible');
+            el.querySelectorAll<HTMLElement>('[data-count]').forEach(animateCount);
+            observer.unobserve(el);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('[data-anim]').forEach(el => observer.observe(el));
+      }
+
+      document.addEventListener('astro:page-load', initScrollReveal);
+    </script>
   </body>
 </html>

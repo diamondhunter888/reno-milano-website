@@ -1,0 +1,66 @@
+---
+const items = [
+  'Woningrenovatie',
+  'Dakwerken',
+  'Badkamer',
+  'Keuken',
+  'Antwerpen · België',
+  'Est. 2014',
+  'Kwaliteitsgarantie',
+  'Op Maat',
+];
+// Double the items for a seamless infinite loop
+const track = [...items, ...items];
+---
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-band__track">
+    {track.map(item => (
+      <>
+        <span class="marquee-band__item">{item}</span>
+        <span class="marquee-band__sep" aria-hidden="true">·</span>
+      </>
+    ))}
+  </div>
+</div>
+
+<style>
+.marquee-band {
+  background: var(--clr-black);
+  padding-block: 0.9rem;
+  border-top: 1px solid rgba(218,221,216,0.07);
+  border-bottom: 1px solid rgba(218,221,216,0.07);
+  overflow: hidden;
+}
+
+.marquee-band__track {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.marquee-band__item {
+  font-size: 0.5625rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(218,221,216,0.3);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.marquee-band__sep {
+  color: rgba(218,221,216,0.12);
+  font-size: 0.5rem;
+  flex-shrink: 0;
+}
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-band__track { animation: none; }
+}
+</style>

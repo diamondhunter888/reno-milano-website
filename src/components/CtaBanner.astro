@@ -3,8 +3,8 @@
 <section class="cta-banner">
   <div class="cta-banner__inner">
 
-    <div class="cta-banner__text">
-      <p class="label" style="color: var(--clr-mid); margin-bottom: 1.25rem;">Klaar voor uw renovatie?</p>
+    <div class="cta-banner__text" data-anim="fade-up">
+      <p class="label" style="color: rgba(28,28,28,0.5); margin-bottom: 1.25rem;">Klaar voor uw renovatie?</p>
       <h2 class="cta-banner__title">
         Vraag vandaag<br>
         <em>uw gratis offerte</em><br>
@@ -12,7 +12,7 @@
       </h2>
     </div>
 
-    <div class="cta-banner__action">
+    <div class="cta-banner__action" data-anim="fade-up" style="--anim-delay: 0.18s">
       <div class="cta-banner__line"></div>
       <a href="/contact" class="btn-outline cta-banner__btn">Neem contact op</a>
       <p class="cta-banner__note">Binnen 24u antwoord. Altijd gratis.</p>
@@ -25,8 +25,6 @@
 .cta-banner {
   background: var(--clr-warm);
   padding-block: var(--spacing-xl);
-  position: relative;
-  overflow: hidden;
 }
 
 .cta-banner__inner {

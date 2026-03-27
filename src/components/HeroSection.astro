@@ -39,13 +39,20 @@
 .hero {
   position: relative;
   min-height: 100vh;
-  background: var(--clr-black);
+  background: linear-gradient(-45deg, #1c1c1c 0%, #111111 40%, #181616 70%, #1c1c1c 100%);
+  background-size: 400% 400%;
+  animation: hero-bg-shift 18s ease infinite;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: var(--spacing-xl) var(--spacing-container-pad);
   padding-top: calc(var(--nav-height) + var(--spacing-lg));
   overflow: hidden;
+}
+
+@keyframes hero-bg-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
 }
 
 /* Grote decoratieve achtergrondtekst */
@@ -62,6 +69,7 @@
   pointer-events: none;
   user-select: none;
   letter-spacing: -0.02em;
+  animation: hFadeIn 2s ease both 0.1s;
 }
 
 .hero__content {
@@ -84,10 +92,13 @@
   height: 1px;
   background: var(--clr-mid);
   flex-shrink: 0;
+  transform-origin: left;
+  animation: hLineGrow 0.7s cubic-bezier(0.16,1,0.3,1) both 0.3s;
 }
 
 .hero__eyebrow {
   color: var(--clr-mid);
+  animation: hFadeUp 0.6s ease both 0.5s;
 }
 
 .hero__title {
@@ -108,6 +119,8 @@
   font-weight: 300;
   font-style: italic;
   color: var(--clr-white);
+  display: inline-block;
+  animation: hReveal 0.85s cubic-bezier(0.16,1,0.3,1) both 0.65s;
 }
 
 .hero__bold {
@@ -116,6 +129,8 @@
   font-style: normal;
   color: var(--clr-white);
   letter-spacing: 0.02em;
+  display: inline-block;
+  animation: hReveal 0.85s cubic-bezier(0.16,1,0.3,1) both 0.85s;
 }
 
 .hero__bottom {
@@ -125,6 +140,7 @@
   gap: var(--spacing-md);
   padding-top: var(--spacing-sm);
   border-top: 1px solid rgba(218,221,216,0.15);
+  animation: hFadeUp 0.7s ease both 1.1s;
 }
 
 .hero__sub {
@@ -162,6 +178,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  animation: hFadeIn 0.8s ease both 1.5s;
 }
 
 .hero__scroll .label {
@@ -175,6 +192,51 @@
   width: 1px;
   height: 48px;
   background: linear-gradient(to bottom, rgba(218,221,216,0.4), transparent);
+  transform-origin: top;
+  animation: hScrollDrop 1s cubic-bezier(0.16,1,0.3,1) both 1.8s;
+}
+
+/* Entrance keyframes */
+@keyframes hFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hLineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes hReveal {
+  from { clip-path: inset(0 100% 0 0); opacity: 0.5; }
+  to   { clip-path: inset(0 0% 0 0);   opacity: 1; }
+}
+
+@keyframes hScrollDrop {
+  from { transform: scaleY(0); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero { animation: none; }
+  .hero__bg-text,
+  .hero__line,
+  .hero__eyebrow,
+  .hero__thin,
+  .hero__bold,
+  .hero__bottom,
+  .hero__scroll,
+  .hero__scroll-line {
+    animation: none;
+    opacity: 1;
+    clip-path: none;
+    transform: none;
+  }
 }
 
 @media (max-width: 768px) {

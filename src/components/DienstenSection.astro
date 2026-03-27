@@ -29,7 +29,7 @@ const diensten = [
 <section class="section diensten">
   <div class="diensten__inner">
 
-    <div class="diensten__header">
+    <div class="diensten__header" data-anim="fade-up">
       <p class="label">Wat wij doen</p>
       <h2 class="diensten__title">
         Onze<br><em>Diensten</em>
@@ -37,8 +37,8 @@ const diensten = [
     </div>
 
     <ol class="diensten__list" role="list">
-      {diensten.map(d => (
-        <li class="diensten__item">
+      {diensten.map((d, i) => (
+        <li class="diensten__item" data-anim="fade-up" style={`--anim-delay: ${i * 0.08}s`}>
           <a href={d.href} class="diensten__link" aria-label={`Meer over ${d.titel}`}>
             <span class="diensten__nummer" aria-hidden="true">{d.nummer}</span>
             <div class="diensten__body">
@@ -51,7 +51,7 @@ const diensten = [
       ))}
     </ol>
 
-    <div class="diensten__footer">
+    <div class="diensten__footer" data-anim="fade-in" style="--anim-delay: 0.35s">
       <a href="/diensten" class="btn-outline diensten__cta">Alle diensten bekijken</a>
     </div>
 

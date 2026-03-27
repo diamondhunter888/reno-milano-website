@@ -8,16 +8,16 @@ const stats = [
 <section class="section section--dark stats">
   <div class="stats__inner">
 
-    <div class="stats__header">
+    <div class="stats__header" data-anim="slide-left">
       <div class="stats__header-line"></div>
       <p class="label" style="color: var(--clr-mid);">In cijfers</p>
     </div>
 
     <div class="stats__grid">
       {stats.map((s, i) => (
-        <div class="stats__item">
+        <div class="stats__item" data-anim="fade-up" style={`--anim-delay: ${i * 0.12}s`}>
           <span class="stats__index" aria-hidden="true">0{i + 1}</span>
-          <span class="stats__cijfer">{s.cijfer}</span>
+          <span class="stats__cijfer" data-count>{s.cijfer}</span>
           <div class="stats__meta">
             <span class="stats__label">{s.label}</span>
             <span class="stats__detail">{s.detail}</span>

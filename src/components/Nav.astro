@@ -51,7 +51,24 @@ function isActive(href: string): boolean {
   z-index: 100;
   background: var(--clr-black);
   border-bottom: 1px solid var(--clr-dark);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1),
+              background 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
+
+.nav--hidden {
+  transform: translateY(-100%);
+}
+
+.nav--scrolled {
+  background: rgba(28,28,28,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+  border-color: transparent;
+}
+
 .nav__inner {
   display: flex;
   align-items: center;
@@ -118,6 +135,7 @@ function isActive(href: string): boolean {
 </style>
 
 <script>
+  // Hamburger menu
   const toggle = document.querySelector<HTMLButtonElement>('.nav__toggle');
   const menu = document.getElementById('nav-menu');
   if (toggle && menu) {
@@ -126,4 +144,14 @@ function isActive(href: string): boolean {
       toggle.setAttribute('aria-expanded', String(isOpen));
     });
   }
+
+  // Hide nav on scroll-down, show on scroll-up
+  let lastY = window.scrollY;
+  const nav = document.querySelector<HTMLElement>('.nav');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav?.classList.toggle('nav--scrolled', y > 30);
+    nav?.classList.toggle('nav--hidden', y > lastY && y > 120);
+    lastY = y;
+  }, { passive: true });
 </script>
