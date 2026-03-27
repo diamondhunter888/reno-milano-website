@@ -55,12 +55,10 @@ const diensten = [
 
         <div class="dienst-sectie__media" data-anim="fade-in" style={`--anim-delay: ${i % 2 !== 0 ? '0.15s' : '0s'}`}>
           <img src={d.foto} alt={d.alt} loading="lazy" />
-          <span class="dienst-sectie__nr-bg" aria-hidden="true">{d.nummer}</span>
         </div>
 
         <div class="dienst-sectie__content" data-anim="fade-up" style={`--anim-delay: ${i % 2 !== 0 ? '0s' : '0.15s'}`}>
           <div class="dienst-sectie__meta">
-            <span class="label dienst-sectie__nr-label">{d.nummer}</span>
             <div class="dienst-sectie__meta-line"></div>
           </div>
           <h2 class="dienst-sectie__titel" set:html={d.titel}></h2>

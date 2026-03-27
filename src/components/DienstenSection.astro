@@ -62,7 +62,6 @@ const diensten = [
           <a href={d.href} class="diensten__link" aria-label={`Meer over ${d.titel}`}>
             <span class="diensten__icon-wrap" aria-hidden="true">
               <Fragment set:html={d.svg} />
-              <span class="diensten__nummer">{d.nummer}</span>
             </span>
             <div class="diensten__body">
               <h3 class="diensten__naam">{d.titel}</h3>

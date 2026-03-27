@@ -65,7 +65,6 @@ const waarden = [
       <ol class="waarden__lijst" role="list">
         {waarden.map((w, i) => (
           <li class="waarden__item" data-anim="fade-up" style={`--anim-delay: ${i * 0.1}s`}>
-            <span class="waarden__nr" aria-hidden="true">{w.nummer}</span>
             <div class="waarden__body">
               <h3 class="waarden__naam">{w.titel}</h3>
               <p class="waarden__tekst">{w.tekst}</p>
@@ -215,10 +214,6 @@ const waarden = [
 }
 
 .waarden__item {
-  display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 2rem;
-  align-items: start;
   padding: 2rem 0;
   border-bottom: 1px solid rgba(218,221,216,0.1);
 }
@@ -305,6 +300,6 @@ const waarden = [
   .verhaal__inner { grid-template-columns: 1fr; }
   .erkend__inner { flex-direction: column; align-items: flex-start; }
   .erkend__cta { width: 100%; justify-content: center; }
-  .waarden__item { grid-template-columns: 2.5rem 1fr; gap: 1rem; }
+  .waarden__item { padding: 1.5rem 0; }
 }
 </style>
