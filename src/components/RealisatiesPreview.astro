@@ -1,8 +1,8 @@
 ---
 const previews = [
-  { alt: 'Woningrenovatie — interieur afwerking', span: true },
-  { alt: 'Badkamerrenovatie — moderne stijl', span: false },
-  { alt: 'Keukenrenovatie — op maat', span: false },
+  { src: '/images/hero-interior.png', alt: 'Woningrenovatie — interieur afwerking', span: true },
+  { src: '/images/dienst-badkamer.png', alt: 'Badkamerrenovatie — moderne stijl', span: false },
+  { src: '/images/dienst-keuken.png', alt: 'Keukenrenovatie — op maat', span: false },
 ];
 ---
 <section class="section rp">
@@ -26,7 +26,7 @@ const previews = [
           data-anim="fade-in"
           style={`--anim-delay: ${i * 0.12}s`}
         >
-          <img src="/images/placeholder.svg" alt={p.alt} class="rp__img" loading="lazy" />
+          <img src={p.src} alt={p.alt} class="rp__img" loading="lazy" />
           <div class="rp__caption">
             <span class="label" style="color: var(--clr-mid);">{p.alt}</span>
           </div>
