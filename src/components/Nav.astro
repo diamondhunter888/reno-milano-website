@@ -15,7 +15,10 @@ function isActive(href: string): boolean {
 
 <nav class="nav" aria-label="Hoofdnavigatie">
   <div class="container nav__inner">
-    <a href="/" class="nav__logo"><em>Reno</em> Milano</a>
+
+    <a href="/" class="nav__logo">
+      <em>Reno</em>Milano
+    </a>
 
     <button
       class="nav__toggle"
@@ -23,126 +26,246 @@ function isActive(href: string): boolean {
       aria-expanded="false"
       aria-controls="nav-menu"
     >
-      <span></span><span></span><span></span>
+      <span></span><span></span>
     </button>
 
     <ul id="nav-menu" class="nav__links" role="list">
-      {navLinks.map(link => (
-        <li>
+      {navLinks.map((link, i) => (
+        <li style={`--i: ${i}`}>
           <a
             href={link.href}
             class={`nav__link ${isActive(link.href) ? 'nav__link--active' : ''}`}
           >
-            {link.label}
+            <span class="nav__link-text">{link.label}</span>
           </a>
         </li>
       ))}
-      <li>
-        <a href="/contact" class="btn-outline nav__cta">Contact</a>
+      <li style="--i: 4">
+        <a href="/contact" class="nav__cta">
+          <span>Contact</span>
+        </a>
       </li>
     </ul>
+
   </div>
 </nav>
 
 <style>
+/* ── Nav shell ── */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
+  height: var(--nav-height);
   background: var(--clr-black);
-  border-bottom: 1px solid var(--clr-dark);
-  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1),
-              background 0.3s ease,
-              box-shadow 0.3s ease,
-              border-color 0.3s ease;
+  border-bottom: 1px solid rgba(218,221,216,0.08);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+              background 0.4s ease,
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
 }
 
-.nav--hidden {
-  transform: translateY(-100%);
-}
+.nav--hidden  { transform: translateY(-100%); }
 
 .nav--scrolled {
-  background: rgba(28,28,28,0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+  background: rgba(15,13,12,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 rgba(218,221,216,0.06), 0 8px 32px rgba(0,0,0,0.4);
   border-color: transparent;
 }
 
+/* ── Inner layout ── */
 .nav__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--nav-height);
+  height: 100%;
 }
+
+/* ── Logo ── */
 .nav__logo {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   color: var(--clr-white);
   line-height: 1;
+  animation: navFadeLeft 0.7s cubic-bezier(0.16,1,0.3,1) both 0.1s;
 }
 .nav__logo em {
   font-weight: 300;
   font-style: italic;
+  color: rgba(218,221,216,0.85);
+  transition: color 0.3s;
 }
+.nav__logo:hover em { color: var(--clr-white); }
+
+/* ── Links list ── */
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.25rem;
   list-style: none;
 }
+
+/* Staggered entrance per item */
+.nav__links li {
+  animation: navFadeDown 0.55s cubic-bezier(0.16,1,0.3,1) both;
+  animation-delay: calc(0.2s + var(--i, 0) * 0.07s);
+}
+
+/* ── Nav link ── */
 .nav__link {
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--clr-mid);
-  transition: color 0.2s;
+  position: relative;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  height: var(--nav-height);
+  padding-inline: 0.85rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(218,221,216,0.55);
+  transition: color 0.25s;
+  overflow: hidden;
 }
-.nav__link:hover, .nav__link--active { color: var(--clr-white); }
-.nav__cta { color: var(--clr-mid); }
-.nav__cta:hover { color: var(--clr-white); border-color: var(--clr-white); }
+
+.nav__link-text {
+  position: relative;
+  display: inline-block;
+}
+
+/* Underline: grows from center on hover */
+.nav__link-text::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--clr-white);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+
+.nav__link:hover { color: var(--clr-white); }
+.nav__link:hover .nav__link-text::after { transform: scaleX(1); }
+
+/* Active: full underline + brighter */
+.nav__link--active { color: var(--clr-white); }
+.nav__link--active .nav__link-text::after { transform: scaleX(1); opacity: 0.5; }
+
+/* ── CTA button ── */
+.nav__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding-inline: 1.25rem;
+  margin-left: 0.5rem;
+  border: 1px solid rgba(218,221,216,0.3);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(218,221,216,0.7);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.nav__cta:hover {
+  background: var(--clr-white);
+  color: var(--clr-black);
+  border-color: var(--clr-white);
+}
+
+/* ── Hamburger (2 lines, more elegant) ── */
 .nav__toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
 }
 .nav__toggle span {
   display: block;
-  width: 22px;
   height: 1px;
   background: var(--clr-white);
-  transition: transform 0.2s;
+  transition: width 0.25s ease, transform 0.3s ease, opacity 0.2s;
+}
+.nav__toggle span:first-child { width: 22px; }
+.nav__toggle span:last-child  { width: 14px; }
+.nav__toggle:hover span       { width: 22px; }
+.nav__toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(3.5px) rotate(45deg);
+  width: 22px;
+}
+.nav__toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-3.5px) rotate(-45deg);
+  width: 22px;
 }
 
+/* ── Entrance keyframes ── */
+@keyframes navFadeLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes navFadeDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
   .nav__toggle { display: flex; }
+
   .nav__links {
-    display: none;
     position: absolute;
     top: var(--nav-height); left: 0; right: 0;
-    background: var(--clr-black);
+    background: rgba(15,13,12,0.97);
+    backdrop-filter: blur(20px);
     flex-direction: column;
-    padding: 1.5rem;
-    gap: 1.5rem;
-    border-top: 1px solid var(--clr-dark);
+    align-items: flex-start;
+    padding: 2rem 1.5rem;
+    gap: 0;
+    border-top: 1px solid rgba(218,221,216,0.08);
+    /* Slide + fade animation */
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: clip-path 0.4s cubic-bezier(0.16,1,0.3,1),
+                opacity 0.3s ease;
   }
-  .nav__links.is-open { display: flex; }
+
+  .nav__links.is-open {
+    clip-path: inset(0 0 0% 0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav__links li { animation: none; width: 100%; }
+
+  .nav__link {
+    height: auto;
+    padding: 1rem 0;
+    font-size: 0.6875rem;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid rgba(218,221,216,0.07);
+    width: 100%;
+  }
+
+  .nav__cta {
+    margin-left: 0;
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: center;
+    height: 44px;
+  }
 }
 </style>
 
 <script>
-  // Hamburger menu
+  // Hamburger toggle
   const toggle = document.querySelector<HTMLButtonElement>('.nav__toggle');
-  const menu = document.getElementById('nav-menu');
+  const menu   = document.getElementById('nav-menu');
   if (toggle && menu) {
     toggle.addEventListener('click', () => {
       const isOpen = menu.classList.toggle('is-open');
@@ -150,7 +273,7 @@ function isActive(href: string): boolean {
     });
   }
 
-  // Hide nav on scroll-down, show on scroll-up
+  // Hide on scroll-down, reveal on scroll-up
   let lastY = window.scrollY;
   const nav = document.querySelector<HTMLElement>('.nav');
   window.addEventListener('scroll', () => {
