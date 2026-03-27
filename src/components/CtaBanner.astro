@@ -1,21 +1,93 @@
 ---
 ---
-<section class="section section--dark cta-banner">
-  <div class="container" style="text-align:center;">
-    <p class="label" style="margin-bottom:1rem;">Klaar voor uw renovatie?</p>
-    <h2 class="cta-banner__title">Vraag vandaag uw gratis offerte aan</h2>
-    <a href="/contact" class="btn-outline cta-banner__btn">Neem contact op</a>
+<section class="cta-banner">
+  <div class="cta-banner__inner">
+
+    <div class="cta-banner__text">
+      <p class="label" style="color: var(--clr-mid); margin-bottom: 1.25rem;">Klaar voor uw renovatie?</p>
+      <h2 class="cta-banner__title">
+        Vraag vandaag<br>
+        <em>uw gratis offerte</em><br>
+        aan.
+      </h2>
+    </div>
+
+    <div class="cta-banner__action">
+      <div class="cta-banner__line"></div>
+      <a href="/contact" class="btn-outline cta-banner__btn">Neem contact op</a>
+      <p class="cta-banner__note">Binnen 24u antwoord. Altijd gratis.</p>
+    </div>
+
   </div>
 </section>
 
 <style>
+.cta-banner {
+  background: var(--clr-warm);
+  padding-block: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-banner__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-container-pad);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+}
+
 .cta-banner__title {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  color: var(--clr-white);
-  margin-bottom: 2rem;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--clr-black);
 }
-.cta-banner__btn { color: var(--clr-mid); }
+
+.cta-banner__title em {
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(28,28,28,0.55);
+}
+
+.cta-banner__action {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-shrink: 0;
+}
+
+.cta-banner__line {
+  width: 48px;
+  height: 1px;
+  background: rgba(28,28,28,0.3);
+}
+
+.cta-banner__btn {
+  color: var(--clr-black);
+  border-color: var(--clr-black);
+  min-width: 220px;
+  justify-content: center;
+}
+
+.cta-banner__note {
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(28,28,28,0.45);
+}
+
+@media (max-width: 768px) {
+  .cta-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cta-banner__action { width: 100%; }
+  .cta-banner__btn { width: 100%; }
+}
 </style>

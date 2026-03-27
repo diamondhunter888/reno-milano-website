@@ -1,45 +1,188 @@
 ---
 ---
 <section class="hero">
-  <div class="hero__inner">
-    <p class="label hero__label">Renovatie · Antwerpen · België</p>
+  <!-- Decoratieve achtergrondtekst -->
+  <span class="hero__bg-text" aria-hidden="true">RM</span>
+
+  <div class="hero__content">
+    <div class="hero__top">
+      <div class="hero__line"></div>
+      <p class="hero__eyebrow label">Antwerpen · België · Est. 2014</p>
+    </div>
+
     <h1 class="hero__title">
-      <span class="hero__thin">RENO</span>
-      <span class="hero__bold">MILANO</span>
+      <span class="hero__title-row">
+        <em class="hero__thin">Reno</em>
+        <span class="hero__bold">Milano</span>
+      </span>
     </h1>
-    <div class="hero__divider"></div>
-    <p class="hero__sub">Vakmanschap dat spreekt voor zich</p>
-    <a href="/realisaties" class="btn-solid hero__cta">Bekijk onze realisaties</a>
+
+    <div class="hero__bottom">
+      <p class="hero__sub">
+        Uw woning verdient het<br>allerbeste vakmanschap.
+      </p>
+      <div class="hero__actions">
+        <a href="/realisaties" class="btn-solid">Onze realisaties</a>
+        <a href="/contact" class="hero__link">Gratis offerte →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero__scroll" aria-hidden="true">
+    <span class="label">Scroll</span>
+    <div class="hero__scroll-line"></div>
   </div>
 </section>
 
 <style>
 .hero {
+  position: relative;
   min-height: 100vh;
   background: var(--clr-black);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  text-align: center;
-  padding: var(--spacing-lg) var(--spacing-sm);
+  padding: var(--spacing-xl) var(--spacing-container-pad);
+  padding-top: calc(var(--nav-height) + var(--spacing-lg));
+  overflow: hidden;
 }
-.hero__inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
-.hero__label { color: var(--clr-mid); margin-bottom: 0.5rem; }
-.hero__title {
+
+/* Grote decoratieve achtergrondtekst */
+.hero__bg-text {
+  position: absolute;
+  right: -2rem;
+  bottom: -4rem;
   font-family: var(--font-display);
-  display: flex;
-  gap: 0.5em;
-  letter-spacing: 0.2em;
-  line-height: 1;
+  font-size: clamp(12rem, 35vw, 28rem);
+  font-weight: 800;
+  line-height: 0.85;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(218,221,216,0.06);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.02em;
 }
-.hero__thin { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 300; color: var(--clr-white); }
-.hero__bold { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; color: var(--clr-white); }
-.hero__divider { width: 48px; height: 1px; background: var(--clr-mid); margin: 0.5rem 0; }
-.hero__sub {
-  font-size: 0.8125rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+
+.hero__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.hero__top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero__line {
+  width: 48px;
+  height: 1px;
+  background: var(--clr-mid);
+  flex-shrink: 0;
+}
+
+.hero__eyebrow {
   color: var(--clr-mid);
 }
-.hero__cta { margin-top: 1.5rem; }
+
+.hero__title {
+  font-family: var(--font-display);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.hero__title-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25em;
+}
+
+.hero__thin {
+  font-size: clamp(5rem, 16vw, 14rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--clr-white);
+}
+
+.hero__bold {
+  font-size: clamp(5rem, 16vw, 14rem);
+  font-weight: 800;
+  font-style: normal;
+  color: var(--clr-white);
+  letter-spacing: 0.02em;
+}
+
+.hero__bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(218,221,216,0.15);
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 300;
+  color: var(--clr-mid);
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-shrink: 0;
+}
+
+.hero__link {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--clr-mid);
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.hero__link:hover { color: var(--clr-white); }
+
+/* Scroll indicator */
+.hero__scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: var(--spacing-container-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero__scroll .label {
+  writing-mode: vertical-rl;
+  font-size: 0.5625rem;
+  letter-spacing: 0.3em;
+  color: rgba(218,221,216,0.4);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(218,221,216,0.4), transparent);
+}
+
+@media (max-width: 768px) {
+  .hero__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero__scroll { display: none; }
+  .hero__bg-text { right: -4rem; font-size: clamp(8rem, 40vw, 14rem); }
+}
 </style>

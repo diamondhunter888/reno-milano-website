@@ -1,87 +1,183 @@
 ---
 const diensten = [
   {
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    nummer: '01',
     titel: 'Woningrenovatie',
-    omschrijving: 'Vloeren, muren en plafonds — volledig vernieuwd met oog voor detail.',
+    omschrijving: 'Vloeren, muren en plafonds — volledig vernieuwd met oog voor detail en duurzame materialen.',
+    href: '/diensten#woningrenovatie',
   },
   {
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20h20"/><path d="M4 20V10l8-6 8 6v10"/><path d="M9 14l3-2 3 2"/><path d="M12 8v4"/></svg>`,
+    nummer: '02',
     titel: 'Dakwerken',
-    omschrijving: 'Isolatie, herstelling en vervanging van daken voor elk type woning.',
+    omschrijving: 'Isolatie, herstelling en volledige vervanging van daken voor elk type woning.',
+    href: '/diensten#dakwerken',
   },
   {
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4 3 4 3 3.5 4.5A7 7 0 0 0 8.5 12c.5.4 1 .8 1.5 1l4 4c1 1 2.5 1 3.5 0l1-1c1-1 1-2.5 0-3.5L15 10c-.2-.5-.6-1-1-1.5z"/><path d="M17.5 4.5L19 6"/></svg>`,
+    nummer: '03',
     titel: 'Badkamer',
-    omschrijving: 'Totaalrenovatie van uw badkamer: van ontwerp tot volledige afwerking.',
+    omschrijving: 'Totaalrenovatie van uw badkamer: van ontwerp tot volledige afwerking op maat.',
+    href: '/diensten#badkamer',
   },
   {
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>`,
+    nummer: '04',
     titel: 'Keuken',
-    omschrijving: 'Keukens op maat, perfect geplaatst en afgewerkt tot in de puntjes.',
+    omschrijving: 'Keukens op maat, perfect geplaatst en afgewerkt tot in het kleinste detail.',
+    href: '/diensten#keuken',
   },
 ];
 ---
-<section class="section section--light diensten">
-  <div class="container">
-    <p class="label" style="text-align:center;margin-bottom:0.75rem;">Wat wij doen</p>
-    <h2 class="diensten__title">Onze Diensten</h2>
-    <div class="diensten__grid">
-      {diensten.map(d => (
-        <div class="diensten__card">
-          <span class="diensten__icon"><Fragment set:html={d.svg} /></span>
-          <h3 class="diensten__naam">{d.titel}</h3>
-          <p class="diensten__omschrijving">{d.omschrijving}</p>
-        </div>
-      ))}
+<section class="section diensten">
+  <div class="diensten__inner">
+
+    <div class="diensten__header">
+      <p class="label">Wat wij doen</p>
+      <h2 class="diensten__title">
+        Onze<br><em>Diensten</em>
+      </h2>
     </div>
-    <div style="text-align:center;margin-top:2.5rem;">
+
+    <ol class="diensten__list" role="list">
+      {diensten.map(d => (
+        <li class="diensten__item">
+          <a href={d.href} class="diensten__link" aria-label={`Meer over ${d.titel}`}>
+            <span class="diensten__nummer" aria-hidden="true">{d.nummer}</span>
+            <div class="diensten__body">
+              <h3 class="diensten__naam">{d.titel}</h3>
+              <p class="diensten__omschrijving">{d.omschrijving}</p>
+            </div>
+            <span class="diensten__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    <div class="diensten__footer">
       <a href="/diensten" class="btn-outline diensten__cta">Alle diensten bekijken</a>
     </div>
+
   </div>
 </section>
 
 <style>
+.diensten {
+  background: var(--clr-warm);
+  padding-block: var(--spacing-xl);
+}
+
+.diensten__inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-container-pad);
+}
+
+.diensten__header {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(28,28,28,0.15);
+}
+
 .diensten__title {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-align: center;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
   color: var(--clr-black);
-  margin-bottom: var(--spacing-md);
 }
-.diensten__grid {
+
+.diensten__title em {
+  font-weight: 300;
+  font-style: italic;
+}
+
+.diensten__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.diensten__item {
+  border-bottom: 1px solid rgba(28,28,28,0.12);
+}
+
+.diensten__link {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-.diensten__card {
-  background: var(--clr-white);
-  border: 1px solid #e0e0e0;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-.diensten__card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-  transform: translateY(-3px);
-}
-.diensten__icon {
-  display: flex;
+  grid-template-columns: 3.5rem 1fr auto;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 1.25rem;
-  color: var(--clr-mid);
-}
-.diensten__naam {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  gap: 2rem;
+  padding: 2rem 0;
   color: var(--clr-black);
-  margin-bottom: 0.75rem;
+  transition: background 0.2s, padding 0.3s;
 }
-.diensten__omschrijving { font-size: 0.875rem; color: var(--clr-mid); line-height: 1.7; }
-.diensten__cta { color: var(--clr-dark); border-color: var(--clr-dark); }
+
+.diensten__link:hover {
+  padding-inline: 1rem;
+  background: rgba(28,28,28,0.04);
+}
+
+.diensten__link:hover .diensten__arrow {
+  transform: translateX(6px);
+}
+
+.diensten__nummer {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: rgba(28,28,28,0.4);
+  align-self: flex-start;
+  padding-top: 0.35rem;
+}
+
+.diensten__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diensten__naam {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  color: var(--clr-black);
+}
+
+.diensten__omschrijving {
+  font-size: 0.875rem;
+  color: rgba(28,28,28,0.6);
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+.diensten__arrow {
+  font-size: 1.25rem;
+  color: var(--clr-black);
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+
+.diensten__footer {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.diensten__cta {
+  color: var(--clr-black);
+  border-color: var(--clr-black);
+}
+
+@media (max-width: 600px) {
+  .diensten__link {
+    grid-template-columns: 2.5rem 1fr;
+  }
+  .diensten__arrow { display: none; }
+  .diensten__header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .diensten__footer { justify-content: flex-start; }
+}
 </style>
