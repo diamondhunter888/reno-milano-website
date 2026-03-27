@@ -1,0 +1,85 @@
+<h2>Welke homepage lay-out spreekt je aan?</h2>
+<p class="subtitle">Alle varianten in luxueuze grijs/zwart/wit stijl</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#111;padding:16px;min-height:200px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333;padding-bottom:8px;">
+        <span style="color:#fff;font-weight:700;letter-spacing:2px;font-size:12px;">RENO MILANO</span>
+        <div style="display:flex;gap:12px;">
+          <span style="color:#888;font-size:10px;">DIENSTEN</span>
+          <span style="color:#888;font-size:10px;">REALISATIES</span>
+          <span style="color:#888;font-size:10px;">CONTACT</span>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px 0;">
+        <div style="width:40px;height:1px;background:#888;margin-bottom:16px;"></div>
+        <div style="color:#fff;font-size:22px;font-weight:300;letter-spacing:4px;line-height:1.3;">RENOVATIE<br><strong style="font-weight:700;">MET KLASSE</strong></div>
+        <div style="width:40px;height:1px;background:#888;margin-top:16px;margin-bottom:16px;"></div>
+        <div style="color:#aaa;font-size:9px;letter-spacing:3px;">ANTWERPEN · BELGIË</div>
+        <div style="margin-top:20px;border:1px solid #666;color:#ccc;font-size:9px;letter-spacing:2px;padding:6px 16px;">ONTDEK ONS WERK</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Volledig scherm hero</h3>
+      <p>Donkere achtergrond, grote tekst gecentreerd, minimalistische navigatie. Maximale luxe-uitstraling.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#f5f5f5;padding:16px;min-height:200px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:8px;background:#fff;margin:-16px -16px 0;padding:10px 16px;">
+        <span style="color:#111;font-weight:700;letter-spacing:2px;font-size:12px;">RENO MILANO</span>
+        <div style="display:flex;gap:12px;">
+          <span style="color:#555;font-size:10px;">DIENSTEN</span>
+          <span style="color:#555;font-size:10px;">REALISATIES</span>
+          <span style="color:#555;font-size:10px;">CONTACT</span>
+        </div>
+      </div>
+      <div style="display:flex;flex:1;gap:12px;margin-top:12px;">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:8px;">
+          <div style="color:#999;font-size:9px;letter-spacing:3px;margin-bottom:8px;">RENOVATIE · ANTWERPEN</div>
+          <div style="color:#111;font-size:18px;font-weight:700;line-height:1.3;margin-bottom:12px;">Uw woning.<br>Onze passie.</div>
+          <div style="color:#666;font-size:9px;line-height:1.5;margin-bottom:12px;">Vakmanschap in badkamer, keuken, dak en volledige renovatie.</div>
+          <div style="background:#111;color:#fff;font-size:9px;letter-spacing:2px;padding:6px 14px;display:inline-block;">VRIJBLIJVEND OFFERTE</div>
+        </div>
+        <div style="flex:1;background:#ccc;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#888;font-size:10px;">[ foto ]</span>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Gesplitste hero</h3>
+      <p>Lichte achtergrond, tekst links, foto rechts. Professioneel en toegankelijk met directe call-to-action.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#1a1a1a;padding:16px;min-height:200px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:0;right:0;width:45%;height:100%;background:#2d2d2d;clip-path:polygon(20% 0, 100% 0, 100% 100%, 0% 100%);"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;border-bottom:1px solid #333;padding-bottom:8px;">
+        <span style="color:#fff;font-weight:700;letter-spacing:3px;font-size:12px;">RENO MILANO</span>
+        <div style="width:24px;display:flex;flex-direction:column;gap:3px;">
+          <div style="height:1px;background:#888;"></div>
+          <div style="height:1px;background:#888;width:16px;"></div>
+          <div style="height:1px;background:#888;"></div>
+        </div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;padding:8px 0;">
+        <div style="color:#777;font-size:8px;letter-spacing:4px;margin-bottom:10px;">EST. 2024 · ANTWERPEN</div>
+        <div style="color:#fff;font-size:20px;font-weight:800;letter-spacing:1px;line-height:1.2;margin-bottom:6px;">PREMIUM<br>RENOVATIE</div>
+        <div style="width:32px;height:2px;background:#888;margin-bottom:10px;"></div>
+        <div style="color:#aaa;font-size:9px;letter-spacing:1px;">Dak · Bad · Keuken · Interieur</div>
+        <div style="margin-top:16px;color:#fff;font-size:9px;letter-spacing:2px;">BEKIJK REALISATIES →</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Diagonaal / geometrisch</h3>
+      <p>Donker met grafische diagonale vlakken. Sterk, modern en onderscheidend. Haute-couture gevoel.</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:24px;">Klik op je favoriete lay-out, of vertel me in de terminal wat je aanspreekt.</p>
