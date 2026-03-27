@@ -50,7 +50,7 @@ const diensten = [
   />
 
   {diensten.map((d, i) => (
-    <section class={`dienst-sectie${i % 2 !== 0 ? ' dienst-sectie--flip' : ''}`} id={d.id}>
+    <section class={`dienst-sectie${i % 2 !== 0 ? ' dienst-sectie--flip dienst-sectie--dark' : ''}`} id={d.id}>
       <div class="dienst-sectie__inner">
 
         <div class="dienst-sectie__media" data-anim="fade-in" style={`--anim-delay: ${i % 2 !== 0 ? '0.15s' : '0s'}`}>
@@ -101,7 +101,7 @@ const diensten = [
   padding-inline: var(--spacing-container-pad);
 }
 
-.dienst-sectie:nth-child(even) {
+.dienst-sectie--dark {
   background: var(--clr-black);
   color: var(--clr-white);
 }
@@ -151,7 +151,7 @@ const diensten = [
   user-select: none;
 }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__nr-bg {
+.dienst-sectie--dark .dienst-sectie__nr-bg {
   -webkit-text-stroke-color: rgba(218,221,216,0.06);
 }
 
@@ -162,9 +162,9 @@ const diensten = [
   margin-bottom: 1.25rem;
 }
 
-.dienst-sectie__nr-label { color: rgba(28,28,28,0.45); }
+.dienst-sectie__nr-label { color: rgba(28,28,28,0.55); }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__nr-label { color: rgba(218,221,216,0.45); }
+.dienst-sectie--dark .dienst-sectie__nr-label { color: rgba(218,221,216,0.6); }
 
 .dienst-sectie__meta-line {
   height: 1px;
@@ -172,7 +172,7 @@ const diensten = [
   background: rgba(28,28,28,0.25);
 }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__meta-line { background: rgba(218,221,216,0.25); }
+.dienst-sectie--dark .dienst-sectie__meta-line { background: rgba(218,221,216,0.25); }
 
 .dienst-sectie__titel {
   font-family: var(--font-display);
@@ -184,16 +184,16 @@ const diensten = [
   margin-bottom: 1.25rem;
 }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__titel { color: var(--clr-white); }
+.dienst-sectie--dark .dienst-sectie__titel { color: var(--clr-white); }
 
 .dienst-sectie__omschrijving {
   font-size: 0.9375rem;
-  color: rgba(28,28,28,0.65);
+  color: rgba(28,28,28,0.78);
   line-height: 1.75;
   margin-bottom: 1.75rem;
 }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__omschrijving { color: rgba(218,221,216,0.65); }
+.dienst-sectie--dark .dienst-sectie__omschrijving { color: rgba(218,221,216,0.82); }
 
 .dienst-sectie__lijst {
   list-style: none;
@@ -205,15 +205,15 @@ const diensten = [
 
 .dienst-sectie__lijst li {
   font-size: 0.8125rem;
-  color: rgba(28,28,28,0.6);
+  color: rgba(28,28,28,0.72);
   padding-left: 1.25rem;
-  border-left: 1px solid rgba(28,28,28,0.2);
+  border-left: 1px solid rgba(28,28,28,0.22);
   line-height: 1.5;
 }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__lijst li {
-  color: rgba(218,221,216,0.55);
-  border-left-color: rgba(218,221,216,0.2);
+.dienst-sectie--dark .dienst-sectie__lijst li {
+  color: rgba(218,221,216,0.78);
+  border-left-color: rgba(218,221,216,0.25);
 }
 
 .dienst-sectie__cta {
@@ -221,7 +221,7 @@ const diensten = [
   border-color: var(--clr-black);
 }
 
-.dienst-sectie:nth-child(even) .dienst-sectie__cta {
+.dienst-sectie--dark .dienst-sectie__cta {
   color: var(--clr-mid);
   border-color: rgba(218,221,216,0.4);
 }
@@ -254,7 +254,7 @@ const diensten = [
 .diensten-cta__title em {
   font-weight: 300;
   font-style: italic;
-  color: rgba(28,28,28,0.5);
+  color: rgba(28,28,28,0.58);
 }
 
 .diensten-cta__action {
@@ -282,7 +282,7 @@ const diensten = [
   font-size: 0.6875rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(28,28,28,0.45);
+  color: rgba(28,28,28,0.6);
 }
 
 @media (max-width: 768px) {
