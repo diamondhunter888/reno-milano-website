@@ -5,24 +5,44 @@ const diensten = [
     titel: 'Woningrenovatie',
     omschrijving: 'Vloeren, muren en plafonds — volledig vernieuwd met oog voor detail en duurzame materialen.',
     href: '/diensten#woningrenovatie',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>`,
   },
   {
     nummer: '02',
     titel: 'Dakwerken',
     omschrijving: 'Isolatie, herstelling en volledige vervanging van daken voor elk type woning.',
     href: '/diensten#dakwerken',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M2 20h20"/>
+      <path d="M4.5 20V11L12 5l7.5 6V20"/>
+      <path d="M9.5 20v-5h5v5"/>
+    </svg>`,
   },
   {
     nummer: '03',
     titel: 'Badkamer',
     omschrijving: 'Totaalrenovatie van uw badkamer: van ontwerp tot volledige afwerking op maat.',
     href: '/diensten#badkamer',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3z"/>
+      <path d="M6 12V7a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/>
+      <line x1="4" y1="19" x2="4" y2="21"/>
+      <line x1="20" y1="19" x2="20" y2="21"/>
+    </svg>`,
   },
   {
     nummer: '04',
     titel: 'Keuken',
     omschrijving: 'Keukens op maat, perfect geplaatst en afgewerkt tot in het kleinste detail.',
     href: '/diensten#keuken',
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+      <path d="M7 2v20"/>
+      <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+    </svg>`,
   },
 ];
 ---
@@ -40,7 +60,10 @@ const diensten = [
       {diensten.map((d, i) => (
         <li class="diensten__item" data-anim="fade-up" style={`--anim-delay: ${i * 0.08}s`}>
           <a href={d.href} class="diensten__link" aria-label={`Meer over ${d.titel}`}>
-            <span class="diensten__nummer" aria-hidden="true">{d.nummer}</span>
+            <span class="diensten__icon-wrap" aria-hidden="true">
+              <Fragment set:html={d.svg} />
+              <span class="diensten__nummer">{d.nummer}</span>
+            </span>
             <div class="diensten__body">
               <h3 class="diensten__naam">{d.titel}</h3>
               <p class="diensten__omschrijving">{d.omschrijving}</p>
@@ -105,10 +128,10 @@ const diensten = [
 
 .diensten__link {
   display: grid;
-  grid-template-columns: 3.5rem 1fr auto;
+  grid-template-columns: 4rem 1fr auto;
   align-items: center;
   gap: 2rem;
-  padding: 2rem 0;
+  padding: 1.75rem 0;
   color: var(--clr-black);
   transition: background 0.2s, padding 0.3s;
 }
@@ -122,14 +145,29 @@ const diensten = [
   transform: translateX(6px);
 }
 
+.diensten__link:hover .diensten__icon-wrap {
+  color: var(--clr-black);
+}
+
+/* Icon + number column */
+.diensten__icon-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  align-self: flex-start;
+  padding-top: 0.15rem;
+  color: rgba(28,28,28,0.45);
+  transition: color 0.25s;
+}
+
 .diensten__nummer {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  color: rgba(28,28,28,0.4);
-  align-self: flex-start;
-  padding-top: 0.35rem;
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: rgba(28,28,28,0.35);
+  line-height: 1;
 }
 
 .diensten__body {
@@ -174,7 +212,7 @@ const diensten = [
 
 @media (max-width: 600px) {
   .diensten__link {
-    grid-template-columns: 2.5rem 1fr;
+    grid-template-columns: 3.5rem 1fr;
   }
   .diensten__arrow { display: none; }
   .diensten__header { flex-direction: column; align-items: flex-start; gap: 1rem; }
